@@ -1,6 +1,7 @@
+
 -- Database: Nostra Movie
 
--- DROP DATABASE "Nostra Movie";
+-- DROP DATABASE "Nostra Movie"; test
 
 CREATE DATABASE "Nostra Movie"
     WITH 
