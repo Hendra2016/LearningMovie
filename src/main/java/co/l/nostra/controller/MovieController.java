@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,6 +23,7 @@ import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
 @RequestMapping("/movie")
+@CrossOrigin(origins = "http://localhost:8000", maxAge = 3600)
 public class MovieController {
 	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd");
 	@Autowired
@@ -77,7 +80,7 @@ public class MovieController {
 		}
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/search")
+	@RequestMapping(method = RequestMethod.GET, value = "/search",produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody DtoHandler searchByName(@RequestParam("name") String name) {
 		try {
 			List<Movie> movies = movieService.searchByMovieParam(name.toUpperCase() + "%");
